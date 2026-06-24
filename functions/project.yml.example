@@ -1,0 +1,21 @@
+packages:
+  - name: nse_momentum
+    functions:
+      - name: daily_run
+        runtime: python:3.11
+        binary: false
+        web: false
+        limits:
+          timeout: 900000
+          memory: 512
+        environment:
+          GMAIL_SENDER: "your_gmail@gmail.com"
+          GMAIL_APP_PASSWORD: "your_app_password"
+          GMAIL_RECIPIENT: "your_gmail@gmail.com"
+          GITHUB_PAT: "your_github_pat"
+          GITHUB_REPO: "finnyrajmann/nse-momentum"
+        triggers:
+          - name: nse-momentum-trigger
+            sourceType: scheduler
+            sourceDetails:
+              cron: "30 3 19-23 * 1-5"
